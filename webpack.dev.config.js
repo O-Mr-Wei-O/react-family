@@ -20,16 +20,19 @@ const devConfig = {
     module: {
         rules: [{
             test: /\.css$/,
-            use: ["style-loader", "css-loader?modules&localIdentName=[local]-[hash:base64:5]", "postcss-loader"]
+            //这里删除了hash后缀，但是不知道有没有什么副作用
+            // use: ['style-loader', 'css-loader?modules&localIdentName=[local]-[hash:base64:5]', 'postcss-loader']
+            use: ['style-loader', 'css-loader', 'postcss-loader']
         }]
     },
     devServer: {
-        port: 8080,
+        //启动端口
+        port: 3000,
         contentBase: path.join(__dirname, './dist'),
         historyApiFallback: true,
         host: '0.0.0.0',
         proxy: {
-            "/api/*": "http://localhost:8090/$1"
+            '/api/*': 'http://localhost:8090/$1'
         }
     }
 };

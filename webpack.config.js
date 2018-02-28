@@ -3,7 +3,7 @@ const merge = require('webpack-merge');
 const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const commonConfig = require('./webpack.common.config.js');
 
@@ -13,8 +13,10 @@ const publicConfig = {
         rules: [{
             test: /\.css$/,
             use: ExtractTextPlugin.extract({
-                fallback: "style-loader",
-                use: ["css-loader?modules&localIdentName=[local]-[hash:base64:5]", "postcss-loader"]
+                fallback: 'style-loader',
+                //这里删除了hash后缀，但是不知道有没有什么副作用
+                // use: ['css-loader?modules&localIdentName=[local]-[hash:base64:5]', 'postcss-loader']
+                use: ['css-loader', 'postcss-loader']
             })
         }]
     },

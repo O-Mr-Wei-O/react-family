@@ -25,5 +25,5 @@ function renderWithHotReload(RootElement) {
             </Provider>
         </AppContainer>,
         document.getElementById('app')
-    )
+    );
 }

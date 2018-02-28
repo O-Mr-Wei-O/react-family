@@ -15,28 +15,28 @@ class Counter extends Component {
                 <button onClick={() => this.props.reset()}>重置
                 </button>
             </div>
-        )
+        );
     }
 }
 
 const mapStateToProps = (state) => {
     return {
         counter: state.counter
-    }
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         increment: () => {
-            dispatch(increment())
+            dispatch(increment());
         },
         decrement: () => {
-            dispatch(decrement())
+            dispatch(decrement());
         },
         reset: () => {
-            dispatch(reset())
+            dispatch(reset());
         }
-    }
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);

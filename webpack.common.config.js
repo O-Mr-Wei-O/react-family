@@ -5,7 +5,7 @@ const webpack = require('webpack');
 commonConfig = {
     entry: {
         app: [
-            "babel-polyfill",
+            'babel-polyfill',
             path.join(__dirname, 'src/index.js')
         ],
         vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux']
@@ -14,7 +14,7 @@ commonConfig = {
         path: path.join(__dirname, './dist'),
         filename: '[name].[chunkhash].js',
         chunkFilename: '[name].[chunkhash].js',
-        publicPath: "/"
+        publicPath: '/'
     },
     module: {
         rules: [{

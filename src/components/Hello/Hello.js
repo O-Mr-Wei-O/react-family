@@ -6,6 +6,6 @@ export default class Hello extends Component {
             <div>
                 Hello,React!
             </div>
-        )
+        );
     }
 }

@@ -6,7 +6,7 @@ class Home extends Component {
         super(props);
         this.state = {
             count: 0
-        }
+        };
     }
 
     _handleClick() {
@@ -22,7 +22,7 @@ class Home extends Component {
                 当前计数：{this.state.count}<br/>
                 <button onClick={() => this._handleClick()}>自增</button>
             </div>
-        )
+        );
     }
 }
 
