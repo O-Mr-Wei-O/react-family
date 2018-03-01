@@ -10,7 +10,6 @@ export default class App extends Component {
         return (
             <div>
                 <Nav/>
-                <button id={'btn'}>123</button>
                 {getRouter()}
             </div>
         );

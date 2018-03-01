@@ -11,6 +11,7 @@
     },
     "sourceType": "module"
   },
+  "parser": "babel-eslint",
   "plugins": [
     "react"
   ],
@@ -31,7 +32,8 @@
       "error",
       "always"
     ],
-    "no-unused-vars": 0
+    "no-unused-vars": 0,
+    "no-console": "off"
   },
   "globals": {
     "document": true,
