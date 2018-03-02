@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-build": "webpack --config webpack.dev.config.js",
-    "start": "webpack-dev-server --config webpack.dev.config.js --color --progress --hot",
+    "start": "concurrently \"webpack-dev-server --config webpack.dev.config.js --color --progress --hot\" \"cd server && yarn start\"",
     "build": "webpack --config webpack.config.js",
     "mock": "json-server mock/mock.js --watch --port 8090",
     "mockdev": "npm run mock & npm start"
@@ -51,6 +51,7 @@
     "antd": "^3.2.2",
     "axios": "^0.16.2",
     "babel-eslint": "^8.2.2",
+    "concurrently": "^3.5.1",
     "eslint": "^4.18.1",
     "eslint-plugin-react": "^7.7.0",
     "react": "^15.6.1",

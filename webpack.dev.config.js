@@ -27,12 +27,13 @@ const devConfig = {
     },
     devServer: {
         //启动端口
-        port: 3000,
+        port: 8080,
         contentBase: path.join(__dirname, './dist'),
         historyApiFallback: true,
         host: '0.0.0.0',
         proxy: {
-            '/api/*': 'http://localhost:8090/$1'
+            // 不设置这个ip请求不到
+            '/api/*': 'http://localhost:3000/'
         }
     }
 };

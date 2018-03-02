@@ -17,6 +17,7 @@ export default function reducer(state = initState, action) {
             errorMsg: ''
         };
     case GET_USER_INFO_SUCCESS:
+        console.log(action.result.data);
         return {
             ...state,
             isLoading: false,
