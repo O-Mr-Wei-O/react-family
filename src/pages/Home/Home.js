@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import {getTopNews} from 'actions/home';
 
 import {Menu, Icon} from 'antd';
+import { BackTop } from 'antd';
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -69,6 +70,7 @@ class Home extends Component {
                         return item;
                     })}
                 </div>
+                <BackTop />
                 <div style={{clear: 'both'}}/>
             </div>
         );
