@@ -2,20 +2,20 @@
     height: 100%;
 }
 
-.Login_container{
+.login-form{
+    width: 13%;
     margin: auto;
-    padding: 10px 50px;
-    width: 450px;
     position: relative;
     top: 50%;
     transform: translateY(-50%);
 }
 
-.Login_container form{
-    text-align: center;
+#components-form-demo-normal-login .login-form {
+    max-width: 300px;
 }
-
-.Login_container Input,.Login_container Button{
-    margin:15px 0;
-    width: 80%;
+#components-form-demo-normal-login .login-form-forgot {
+    float: right;
+}
+#components-form-demo-normal-login .login-form-button {
+    width: 100%;
 }

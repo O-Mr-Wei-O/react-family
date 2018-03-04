@@ -2,20 +2,10 @@
     height: 100%;
 }
 
-.Register_container{
+#register-form{
+    width: 30%;
     margin: auto;
-    padding: 10px 50px;
-    width: 450px;
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-}
-
-.Register_container form{
-    text-align: center;
-}
-
-.Register_container Input,.Register_container Button{
-    margin:15px 0;
-    width: 80%;
 }
