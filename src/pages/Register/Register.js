@@ -1,41 +1,64 @@
 import React from 'react';
 import './Register.css';
-import {Link} from 'react-router-dom';
 
-import {Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete} from 'antd';
+import {connect} from 'react-redux';
+import {postRegister} from 'actions/register';
 
+import {
+    Form,
+    Input,
+    Tooltip,
+    Icon,
+    Cascader,
+    Select,
+    Row,
+    Col,
+    Checkbox,
+    Button,
+    AutoComplete,
+    Modal,
+    message
+} from 'antd';
+
+const confirm = Modal.confirm;
 const FormItem = Form.Item;
 const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 
 
 class RegisterFrom extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            confirmDirty: false,
+            autoCompleteResult: [],
+        };
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                this.props.postRegister(values);
                 console.log('Received values of form: ', values);
             }
         });
     };
 
-    state = {
-        confirmDirty: false,
-        autoCompleteResult: [],
-    };
+    // handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     this.props.form.validateFieldsAndScroll((err, values) => {
+    //         if (!err) {
+    //             console.log('Received values of form: ', values);
+    //         }
+    //     });
+    // };
 
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFieldsAndScroll((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-            }
-        });
-    };
     handleConfirmBlur = (e) => {
         const value = e.target.value;
         this.setState({confirmDirty: this.state.confirmDirty || !!value});
     };
+
     checkPassword = (rule, value, callback) => {
         const form = this.props.form;
         if (value && value !== form.getFieldValue('password')) {
@@ -44,6 +67,7 @@ class RegisterFrom extends React.Component {
             callback();
         }
     };
+
     checkConfirm = (rule, value, callback) => {
         const form = this.props.form;
         if (value && this.state.confirmDirty) {
@@ -52,10 +76,17 @@ class RegisterFrom extends React.Component {
         callback();
     };
 
+
     render() {
 
         const {getFieldDecorator} = this.props.form;
         const {autoCompleteResult} = this.state;
+
+        const info = () => {
+            message.info('注册成功');
+            this.props.postRegister();
+        };
+
 
         const formItemLayout = {
             labelCol: {
@@ -140,7 +171,7 @@ class RegisterFrom extends React.Component {
                     {...formItemLayout}
                     label={(
                         <span>
-              Nickname&nbsp;
+                            Nickname&nbsp;
                             <Tooltip title="What do you want others to call you?">
                                 <Icon type="question-circle-o"/>
                             </Tooltip>
@@ -164,11 +195,13 @@ class RegisterFrom extends React.Component {
                     )}
                 </FormItem>
                 <FormItem {...tailFormItemLayout}>
-                    <Button type="primary" htmlType="submit">Register</Button>
+                    <Button type="primary" htmlType="submit" onClick={() => info()}>
+                        Register
+                    </Button>
                 </FormItem>
             </Form>);
     }
 }
 
 const Register = Form.create()(RegisterFrom);
-export default Register;
+export default connect((state) => ({register: state.register}), {postRegister})(Register);
