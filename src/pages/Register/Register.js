@@ -19,6 +19,7 @@ import {
     Modal,
     message
 } from 'antd';
+import {Link} from 'react-router-dom';
 
 const confirm = Modal.confirm;
 const FormItem = Form.Item;
@@ -40,7 +41,7 @@ class RegisterFrom extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 this.props.postRegister(values);
-                console.log('Received values of form: ', values);
+                // console.log('Received values of form: ', values);
             }
         });
     };
@@ -197,11 +198,27 @@ class RegisterFrom extends React.Component {
                         <Input addonBefore={prefixSelector} style={{width: '100%'}}/>
                     )}
                 </FormItem>
-                <FormItem {...tailFormItemLayout}>
-                    <Button type="primary" htmlType="submit">
-                        Register
-                    </Button>
-                </FormItem>
+                {
+                    this.props.registerData.status != 'success'
+                    &&
+                    <FormItem {...tailFormItemLayout}>
+                        <Button type="primary" htmlType="submit">
+                            Register
+                        </Button>
+                    </FormItem>
+                }
+                {
+                    this.props.registerData.status == 'fail'
+                    &&
+                    <Button style={{width: '100%'}} type='danger' ghost>注册失败</Button>
+                }
+                {
+                    this.props.registerData.status == 'success'
+                    &&
+                    <Button style={{width: '100%'}} type="primary" ghost
+                        onClick={() => sessionStorage.setItem('current','login')
+                        }><Link to={'/Login'}>注册成功，点击登录</Link></Button>
+                }
             </Form>);
     }
 }

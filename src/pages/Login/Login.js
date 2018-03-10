@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './Login.css';
 import {Form, Icon, Input, Button, Checkbox} from 'antd';
-import {Link} from 'react-router-dom';
+import {Link, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {postLogin} from 'actions/login';
 
@@ -19,8 +19,12 @@ class LoginForm extends React.Component {
     };
 
     render() {
-        console.log(this.props.loginData.login);
+        // console.log(this.props.loginData.login);
         const {getFieldDecorator} = this.props.form;
+        // 当返回状态为loginSuccess是时才存入session
+        if (this.props.loginData.login == 'loginSuccess') {
+            sessionStorage.setItem('nickname', this.props.loginData.nickname);
+        }
         return (
             <Form onSubmit={this.handleSubmit} className="login-form" id={'components-form-demo-normal-login'}>
                 <FormItem>
@@ -38,16 +42,26 @@ class LoginForm extends React.Component {
                             placeholder="Password"/>
                     )}
                 </FormItem>
-                <FormItem>
-                    <Button type="primary" htmlType="submit" className="login-form-button">
-                        Login
-                    </Button>
-                    Or <Link to="/Register">register now!</Link>
-                </FormItem>
+                {
+                    this.props.loginData.login != 'loginSuccess'
+                    &&
+                    <FormItem>
+                        <Button type="primary" htmlType="submit" className="login-form-button">
+                            Login
+                        </Button>
+                        Or <Link to="/Register">register now!</Link>
+                    </FormItem>
+                }
                 {
                     this.props.loginData.login == 'loginSuccess'
                     &&
-                    <span>登录成功</span>
+                    <Button style={{width: '100%'}} type="primary" ghost><Link to={'/'}>登录成功，点击跳转</Link></Button>
+                }
+
+                {
+                    this.props.loginData.login == 'loginFail'
+                    &&
+                    <Button style={{width: '100%'}} type='danger' ghost>登录失败</Button>
                 }
             </Form>
         );

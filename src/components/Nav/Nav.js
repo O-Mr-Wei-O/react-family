@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect, Route} from 'react-router-dom';
 import './Nav.css';
 import {Menu, Icon} from 'antd';
 
@@ -12,20 +12,24 @@ const MenuItemGroup = Menu.ItemGroup;
 
 export default class Nav extends Component {
     state = {
-        current: 'home',
+        test: null,
     };
     handleClick = (e) => {
-        console.log('click ', e);
-        this.setState({
-            current: e.key,
-        });
+        // console.log('click ', e);
+        sessionStorage.setItem('current', e.key);
+        // this.setState({
+        //     current: e.key,
+        // });
     };
 
     render() {
+        const nickname = sessionStorage.getItem('nickname');
+        //使用session存储menu的键值，这样每次刷新就不会改变，只有在重开才会改变
+        const current = sessionStorage.getItem('current') ? sessionStorage.getItem('current') : 'home';
         return (
             <Menu
                 onClick={this.handleClick}
-                selectedKeys={[this.state.current]}
+                selectedKeys={[current]}
                 mode="horizontal"
             >
                 <span className={'social'}>S o c i a l  W e b</span>
@@ -44,12 +48,42 @@ export default class Nav extends Component {
                     enterButton
                     style={{width: '200px', marginLeft: '2%'}}
                 />
-                <Menu.Item key="login" style={{float: 'right', marginRight: '7%'}}>
-                    <Link to={'/Login'}><Icon type="login" />登录</Link>
-                </Menu.Item>
-                <Menu.Item key="register" style={{float: 'right'}}>
-                    <Link to={'/Register'}><Icon type="user-add" />注册</Link>
-                </Menu.Item>
+                {
+                    nickname == null
+                    &&
+                    <Menu.Item key="login" style={{float: 'right', marginRight: '7%'}}>
+                        <Link to={'/Login'}><Icon type="login"/>登录</Link>
+                    </Menu.Item>
+                }
+                {
+                    nickname == null
+                    &&
+                    <Menu.Item key="register" style={{float: 'right'}}>
+                        <Link to={'/Register'}><Icon type="user-add"/>注册</Link>
+                    </Menu.Item>
+                }
+
+                {
+                    nickname != null
+                    &&
+                    <Menu.Item key="logout" style={{float: 'right', marginRight: '7%'}}>
+                        <span onClick={() => {
+                            sessionStorage.removeItem('nickname');
+                            // 通过setState来重新渲染页面
+                            this.setState({
+                                test:''
+                            });
+                        }}>退出</span>
+                    </Menu.Item>
+                }
+
+                {
+                    nickname != null
+                    &&
+                    <Menu.Item key="register" style={{float: 'right'}}>
+                        <Icon type="user"/>{nickname}
+                    </Menu.Item>
+                }
             </Menu>
         );
     }

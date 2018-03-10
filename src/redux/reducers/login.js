@@ -1,7 +1,8 @@
 import {Login_REQUEST, Login_FAIL, Login_SUCCESS} from 'actions/login';
 
 const initState = {
-    login: null
+    login: null,
+    nickname:null
 };
 
 export default function reducer(state = initState, action) {
@@ -15,7 +16,8 @@ export default function reducer(state = initState, action) {
         return {
             ...state,
             // // 传回来的是字符串，需要先转换成object类型的json对象
-            login: action.result.data
+            login: action.result.data.login,
+            nickname:action.result.data.nickname
         };
     case Login_FAIL:
         return {

@@ -57,9 +57,11 @@ router.post('/api/login', function (req, res) {
                     const rowsString = JSON.stringify(rows);
                     // JSON字符串转换为JSON对象
                     const rowsObject = JSON.parse(rowsString);
-                    console.log(rowsObject[0].password);
+                    // console.log(rowsObject[0].password);
                     if (rowsObject[0].password == password) {
-                        res.json('loginSuccess');
+                        res.json({login: 'loginSuccess', nickname: rowsObject[0].nickname});
+                    } else {
+                        res.json({login: 'loginFail', nickname: null});
                     }
                 }
             });

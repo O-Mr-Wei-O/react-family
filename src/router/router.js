@@ -29,7 +29,7 @@ export default () => (
             <Route exact path="/" component={createComponent(Home)}/>
             <Route path="/Login" component={createComponent(Login)}/>
             <Route path="/Register" component={createComponent(Register)}/>
-            <Route path="/userinfo" component={createComponent(UserInfo)}/>
+            <Route path="/Userinfo" component={createComponent(UserInfo)}/>
             <Route component={createComponent(NotFound)}/>
         </Switch>
     </div>
