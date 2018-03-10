@@ -76,16 +76,19 @@ class RegisterFrom extends React.Component {
         callback();
     };
 
+    registerClick = () => {
+        this.props.postRegister();
+        message.info('注册成功');
+    };
 
     render() {
-
         const {getFieldDecorator} = this.props.form;
         const {autoCompleteResult} = this.state;
 
-        const info = () => {
-            message.info('注册成功');
-            this.props.postRegister();
-        };
+        // const info = () => {
+        //     message.info('注册成功');
+        //     this.props.postRegister();
+        // };
 
 
         const formItemLayout = {
@@ -195,7 +198,7 @@ class RegisterFrom extends React.Component {
                     )}
                 </FormItem>
                 <FormItem {...tailFormItemLayout}>
-                    <Button type="primary" htmlType="submit" onClick={() => info()}>
+                    <Button type="primary" htmlType="submit">
                         Register
                     </Button>
                 </FormItem>
@@ -204,4 +207,4 @@ class RegisterFrom extends React.Component {
 }
 
 const Register = Form.create()(RegisterFrom);
-export default connect((state) => ({register: state.register}), {postRegister})(Register);
+export default connect((state) => ({registerData: state.register}), {postRegister})(Register);
