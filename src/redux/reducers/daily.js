@@ -1,23 +1,22 @@
-import {Register_REQUEST, Register_FAIL, Register_SUCCESS} from 'actions/register';
+import {DAILY_REQUEST, DAILY_FAIL, DAILY_SUCCESS} from 'actions/daily';
 
 const initState = {
-    status: ''
+    status: null
 };
 
 export default function reducer(state = initState, action) {
     switch (action.type) {
-    case Register_REQUEST:
+    case DAILY_REQUEST:
         return {
             ...state,
         };
-    case Register_SUCCESS:
+    case DAILY_SUCCESS:
         // console.log(action.result.data);
         return {
             ...state,
-            // // 传回来的是字符串，需要先转换成object类型的json对象
             status: action.result.data
         };
-    case Register_FAIL:
+    case DAILY_FAIL:
         return {
             ...state,
         };

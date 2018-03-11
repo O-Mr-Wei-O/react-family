@@ -37,10 +37,10 @@ export default class Nav extends Component {
                     <Link to={'/'}><Icon type="home"/>首页</Link>
                 </Menu.Item>
                 <Menu.Item key="bars">
-                    <Link to={'/find'}><Icon type="bars"/>发现</Link>
+                    <Link to={'/circle'}><Icon type="bars"/>圈子</Link>
                 </Menu.Item>
-                <Menu.Item key="form">
-                    <Link to={'/topic'}><Icon type="form"/>话题</Link>
+                <Menu.Item key="daily">
+                    <Link to={'/daily'}><Icon type="form"/>写日记</Link>
                 </Menu.Item>
                 <Search
                     placeholder="input search text"
@@ -69,10 +69,12 @@ export default class Nav extends Component {
                     <Menu.Item key="logout" style={{float: 'right', marginRight: '7%'}}>
                         <span onClick={() => {
                             sessionStorage.removeItem('nickname');
+                            sessionStorage.removeItem('email');
                             // 通过setState来重新渲染页面
-                            this.setState({
-                                test:''
-                            });
+                            // this.setState({
+                            //     test:''
+                            // });
+                            location.reload();
                         }}>退出</span>
                     </Menu.Item>
                 }

@@ -1,0 +1,68 @@
+.writeDaily {
+    margin: auto;
+    width: 40%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.writeDaily p{
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.writeDaily .Input {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding: 0;
+    overflow: hidden;
+    font-family: inherit;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    height: 44px;
+    min-height: 44px;
+    display: block;
+    width: 100%;
+    border: 0;
+    font-size: 32px;
+    line-height: 1.4;
+    font-weight: 600;
+    font-synthesis: style;
+    box-shadow: none;
+}
+
+.writeDaily .textInput{
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding: 0;
+    overflow: hidden;
+    font-family: inherit;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    height: 344px;
+    min-height: 44px;
+    display: block;
+    width: 100%;
+    border: 0;
+    font-size: 22px;
+    line-height: 1.4;
+    font-synthesis: style;
+    box-shadow: none;
+}
+
+.noLogin{
+    margin: auto;
+    width: 40%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    font-size: 30px;
+    color: grey;
+}

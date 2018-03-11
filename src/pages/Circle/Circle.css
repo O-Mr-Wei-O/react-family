@@ -1,0 +1,58 @@
+.Circle {
+    margin: auto;
+    padding-top: 30px;
+    width: 694px;
+}
+
+.Card {
+    padding: 16px 20px;
+    width: 694px;
+    /*min-height: 283px;*/
+    background: #edf3f6;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+
+.CardEmail {
+    font-weight: 600;
+}
+
+.CardTitle {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: #1a1a1a;
+    cursor: pointer;
+}
+
+.CardTitle:hover {
+    color: #175199;
+}
+
+.CardText {
+    line-height: 1.67;
+    letter-spacing: 3px;
+    font-size: 16px;
+    color: #1a1a1a;
+    word-break: normal;
+    width: auto;
+    display: block;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+
+Icon:active {
+    color: #00B7FF;
+}
+
+.noLogin{
+    margin: auto;
+    width: 40%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    font-size: 30px;
+    color: grey;
+}
