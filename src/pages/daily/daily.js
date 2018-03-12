@@ -9,23 +9,24 @@ import {writeDaily} from 'actions/daily';
 
 
 // 上传文件---待写
-// const props = {
-//     name: 'file',
-//     action: '/api/upload',
-//     headers: {
-//         authorization: 'authorization-text',
-//     },
-//     onChange(info) {
-//         if (info.file.status !== 'uploading') {
-//             console.log(info.file, info.fileList);
-//         }
-//         if (info.file.status === 'done') {
-//             message.success(`${info.file.name} file uploaded successfully`);
-//         } else if (info.file.status === 'error') {
-//             message.error(`${info.file.name} file upload failed.`);
-//         }
-//     },
-// };
+const props = {
+    name: 'file',
+    action: '/api/upload',
+    headers: {
+        authorization: 'authorization-text',
+    },
+    onChange(info) {
+        if (info.file.status !== 'uploading') {
+            console.log(info.file, info.fileList);
+        }
+        if (info.file.status === 'done') {
+            message.success(`${info.file.name} file uploaded successfully`);
+            console.log(info);
+        } else if (info.file.status === 'error') {
+            message.error(`${info.file.name} file upload failed.`);
+        }
+    },
+};
 
 class Daily extends React.Component {
     constructor(props) {
@@ -36,6 +37,7 @@ class Daily extends React.Component {
         };
     }
 
+    //发布按钮
     publish(email) {
         const title = this.refs.title.value;
         const text = this.refs.text.value;
@@ -56,13 +58,13 @@ class Daily extends React.Component {
                 <div className={'writeDaily'}>
                     <p>写日记</p>
                     <textarea rows={1} placeholder={'请输入标题'} style={{height: '44px'}} className={'Input'}
-                              ref={'title'}/>
+                        ref={'title'}/>
                     <hr/>
                     <textarea rows={5} maxLength={300} placeholder={'请输入正文'} className={'textInput'} ref={'text'}/>
                     {/*上传附件*/}
                     {/*<Upload {...props}>*/}
                     {/*<Button>*/}
-                    {/*<Icon type="upload" /> Click to Upload*/}
+                    {/*<Icon type="upload"/> Click to Upload*/}
                     {/*</Button>*/}
                     {/*</Upload>*/}
                     {

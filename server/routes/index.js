@@ -7,6 +7,30 @@ var bodyParser = require('body-parser');
 
 var db = require('../config/db');
 
+var fs = require('fs');
+
+// 初始化Client
+var co = require('co');
+var OSS = require('ali-oss');
+var client = new OSS({
+    accessKeyId: 'LTAI7wlX2c74LiOo',
+    accessKeySecret: 'yQCDa7x7HUjpR3ezzJX39LIVI9sto4',
+    bucket: 'graduationdesign',
+    region: 'oss-cn-beijing'
+});
+// co(function* () {
+//     var stream = fs.createReadStream('local-file');
+//     var result = yield client.putStream('object-key', stream);
+//     console.log(result);
+// }).catch(function (err) {
+//     console.log(err);
+// });
+
+// router.post('/api/upload',function (req,res) {
+//     // console.log(req.client.Socket._readableState.ReadableState.buffer);
+//     res.end();
+// });
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('index', {title: 'Express'});
