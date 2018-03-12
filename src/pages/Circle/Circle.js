@@ -14,7 +14,6 @@ class Circle extends React.Component {
     }
 
     componentDidMount() {
-        console.log('Will');
         this.props.getCircle();
     }
 

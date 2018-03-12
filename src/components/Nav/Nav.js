@@ -70,6 +70,7 @@ export default class Nav extends Component {
                         <span onClick={() => {
                             sessionStorage.removeItem('nickname');
                             sessionStorage.removeItem('email');
+                            sessionStorage.removeItem('admin');
                             // 通过setState来重新渲染页面
                             // this.setState({
                             //     test:''
@@ -84,6 +85,14 @@ export default class Nav extends Component {
                     &&
                     <Menu.Item key="register" style={{float: 'right'}}>
                         <Icon type="user"/>{nickname}
+                    </Menu.Item>
+                }
+
+                {
+                    nickname != null
+                    &&
+                    <Menu.Item key="admin" style={{float: 'right'}}>
+                        <Link to={'/admin'}><Icon type="lock" />管理员</Link>
                     </Menu.Item>
                 }
             </Menu>

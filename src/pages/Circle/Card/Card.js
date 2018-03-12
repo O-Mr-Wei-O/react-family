@@ -3,7 +3,7 @@ import React from 'react';
 import {Button} from 'antd';
 import {Upload, message, Icon} from 'antd';
 
-import {zan} from 'actions/card';
+import {zan,report} from 'actions/card';
 import {connect} from 'react-redux';
 
 class Card extends React.Component {
@@ -14,7 +14,7 @@ class Card extends React.Component {
             // 点赞
             zanNumber: this.props.info.zanNumber,
             // 举报
-            report: this.props.info.report
+            report: this.props.info.report == 1 ? 'report' : 'unreport'
         };
     }
 
@@ -30,14 +30,15 @@ class Card extends React.Component {
     }
 
     // 举报
-    report() {
+    report(id) {
+        this.props.report(id);
         this.setState({
             report: 'report'
         });
     }
 
     render() {
-        console.log(this.props);
+        // console.log(this.props);
         return (
             <div className={'Card'}>
                 <span className={'CardEmail'}><Icon type="paper-clip"/> {this.props.info.email}</span>
@@ -63,7 +64,7 @@ class Card extends React.Component {
                     {
                         this.state.report != 'report'
                         &&
-                        <Button type="ghost" style={{marginLeft: '30px'}} onClick={() => this.report()}><Icon
+                        <Button type="ghost" style={{marginLeft: '30px'}} onClick={() => this.report(this.props.info.id)}><Icon
                             type="cross-circle-o"/>举报</Button>
                     }
                 </div>
@@ -72,4 +73,4 @@ class Card extends React.Component {
     }
 }
 
-export default connect((state) => ({cardData: state.card}), {zan})(Card);
+export default connect((state) => ({cardData: state.card}), {zan,report})(Card);

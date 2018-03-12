@@ -38,7 +38,7 @@ class Home extends Component {
             }
         }
         return (
-            <div style={{width: 1710, margin: 'auto'}}>
+            <div style={{width: 1710, margin: 'auto',background:'#FFFFFF'}}>
                 <Menu
                     onClick={this.handleClick}
                     style={{width: 146, float: 'left'}}

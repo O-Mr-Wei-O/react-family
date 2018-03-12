@@ -58,7 +58,7 @@ class Daily extends React.Component {
                     <textarea rows={1} placeholder={'请输入标题'} style={{height: '44px'}} className={'Input'}
                               ref={'title'}/>
                     <hr/>
-                    <textarea rows={10} placeholder={'请输入正文'} className={'textInput'} ref={'text'}/>
+                    <textarea rows={5} maxLength={300} placeholder={'请输入正文'} className={'textInput'} ref={'text'}/>
                     {/*上传附件*/}
                     {/*<Upload {...props}>*/}
                     {/*<Button>*/}

@@ -35,8 +35,12 @@ class LoginForm extends React.Component {
         //暂定解决办法：退出后刷新
         //
         if (this.props.loginData.login == 'loginSuccess') {
+            // 设置nickname
             sessionStorage.setItem('nickname', this.props.loginData.nickname);
+            // 设置email，每位用户唯一
             sessionStorage.setItem('email', this.props.loginData.email);
+            // 设置管理员，1是，0不是
+            sessionStorage.setItem('admin', this.props.loginData.admin);
             // this.setState({
             //     status:this.props.loginData.login
             // });

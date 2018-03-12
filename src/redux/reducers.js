@@ -8,6 +8,11 @@ import login from 'reducers/login';
 import daily from 'reducers/daily';
 import circle from 'reducers/circle';
 import card from 'reducers/card';
+import dailyTab from 'reducers/dailyTab';
+import userTab from 'reducers/userTab';
+import Tr from 'reducers/Tr';
+import userTr from 'reducers/userTr';
+import userRecover from 'reducers/userRecover';
 
 export default combineReducers({
     counter,
@@ -17,5 +22,10 @@ export default combineReducers({
     login,
     daily,
     circle,
-    card
+    card,
+    dailyTab,
+    userTab,
+    Tr,
+    userTr,
+    userRecover
 });
