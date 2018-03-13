@@ -42,12 +42,15 @@ export default class Nav extends Component {
                 <Menu.Item key="daily">
                     <Link to={'/daily'}><Icon type="form"/>写日记</Link>
                 </Menu.Item>
-                <Search
-                    placeholder="input search text"
-                    onSearch={value => console.log(value)}
-                    enterButton
-                    style={{width: '200px', marginLeft: '2%'}}
-                />
+                <Menu.Item key="search">
+                    <Link to={'/search'}><Icon type="search"/>搜索</Link>
+                </Menu.Item>
+                {/*<Search*/}
+                {/*placeholder="input search text"*/}
+                {/*onSearch={value => console.log(value)}*/}
+                {/*enterButton*/}
+                {/*style={{width: '200px', marginLeft: '2%'}}*/}
+                {/*/>*/}
                 {
                     nickname == null
                     &&
@@ -83,8 +86,8 @@ export default class Nav extends Component {
                 {
                     nickname != null
                     &&
-                    <Menu.Item key="register" style={{float: 'right'}}>
-                        <Icon type="user"/>{nickname}
+                    <Menu.Item key="userInfo" style={{float: 'right'}}>
+                        <Link to={'/userInfo'}><Icon type="user"/>{nickname}</Link>
                     </Menu.Item>
                 }
 

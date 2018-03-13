@@ -1,27 +1,84 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {getUserInfo} from 'actions/userInfo';
+import './userInfo.css';
+
+import {Upload, Icon, message, Input} from 'antd';
+
+function getBase64(img, callback) {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result));
+    reader.readAsDataURL(img);
+}
+
+function beforeUpload(file) {
+    const isJPG = file.type === 'image/jpeg';
+    if (!isJPG) {
+        message.error('You can only upload JPG file!');
+    }
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+        message.error('Image must smaller than 2MB!');
+    }
+    return isJPG && isLt2M;
+}
+
 
 class UserInfo extends Component {
+    state = {
+        loading: false,
+    };
+    handleChange = (info) => {
+        if (info.file.status === 'uploading') {
+            this.setState({ loading: true });
+            return;
+        }
+        if (info.file.status === 'done') {
+            // Get this url from response in real world.
+            getBase64(info.file.originFileObj, imageUrl => this.setState({
+                imageUrl,
+                loading: false,
+            }));
+        }
+    }
+
     render() {
-        const {userInfo, isLoading, errorMsg} = this.props.userInfo;
-        return (
+        const uploadButton = (
             <div>
-                {
-                    isLoading ? '请求信息中......' :
-                        (
-                            errorMsg ? errorMsg :
-                                <div>
-                                    <p>用户信息：</p>
-                                    <p>用户名：{userInfo.name}</p>
-                                    <p>介绍：{userInfo.intro}</p>
-                                </div>
-                        )
-                }
-                <button onClick={() => this.props.getUserInfo()}>请求用户信息</button>
+                <Icon type={this.state.loading ? 'loading' : 'plus'} />
+                <div className="ant-upload-text">Upload</div>
+            </div>
+        );
+        const imageUrl = this.state.imageUrl;
+        return (
+
+            // 还在写！！！！！！！！！！！！！！
+            <div className={'userInfo'}>
+                <span>上传用户头像:</span>
+                <Upload
+                    name="avatar"
+                    listType="picture-card"
+                    className="avatar-uploader"
+                    showUploadList={false}
+                    action="//jsonplaceholder.typicode.com/posts/"
+                    beforeUpload={beforeUpload}
+                    onChange={this.handleChange}
+                >
+                    {imageUrl ? <img src={imageUrl} alt="" /> : uploadButton}
+                </Upload>
+                <div>
+                    <span>nickname：</span>
+                    <Input placeholder="nickname" />
+                </div>
+                <div>
+                    <span>age：</span>
+                    <Input placeholder="age" />
+                </div>
+                <div>
+                    <span>birthday：</span>
+                    <Input placeholder="birthday" />
+                </div>
             </div>
         );
     }
 }
 
-export default connect((state) => ({userInfo: state.userInfo}), {getUserInfo})(UserInfo);
+export default UserInfo;

@@ -1,0 +1,10 @@
+.Search{
+    margin: auto;
+    padding-top: 30px;
+    width: 70%;
+    height: 100%;
+}
+
+.ant-input-search.ant-input-search-enter-button.ant-input-affix-wrapper{
+    width: 300px !important;
+}

@@ -11,6 +11,7 @@ import Register from 'bundle-loader?lazy&name=register!pages/Register/Register';
 import Daily from 'bundle-loader?lazy&name=daily!pages/daily/daily';
 import Circle from 'bundle-loader?lazy&name=circle!pages/Circle/Circle';
 import Admin from 'bundle-loader?lazy&name=admin!pages/Admin/Admin';
+import Search from 'bundle-loader?lazy&name=search!pages/Search/Search';
 
 
 import Page1 from 'bundle-loader?lazy&name=page1!pages/Page1/Page1';
@@ -35,6 +36,8 @@ export default () => (
             <Route path="/circle" component={createComponent(Circle)}/>
             <Route path="/daily" component={createComponent(Daily)}/>
             <Route path="/admin" component={createComponent(Admin)}/>
+            <Route path="/search" component={createComponent(Search)}/>
+            <Route path="/userInfo" component={createComponent(UserInfo)}/>
             <Route component={createComponent(NotFound)}/>
         </Switch>
     </div>
